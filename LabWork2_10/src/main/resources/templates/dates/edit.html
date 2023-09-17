@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaft.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Date</title>
+</head>
+<body>
+<form th:action="@{/dates/{id}(id=${date.getId()})}" th:object="${date}" th:method="POST">
+  <label for="day">Day:</label>
+  <input type="text" th:field="*{day}" id="day">
+  <br>
+
+  <label for="month">Month:</label>
+  <select name="month" id="month">
+    <option value="JAN">January</option>
+    <option value="FEB">February</option>
+    <option value="MAR">March</option>
+    <option value="APR">April</option>
+    <option value="MAY">May</option>
+    <option value="JUN">June</option>
+    <option value="JUL">July</option>
+    <option value="AUG">August</option>
+    <option value="SEP">September</option>
+    <option value="OCT">October</option>
+    <option value="NOV">November</option>
+    <option value="DEC">December</option>
+  </select>
+  <br>
+
+  <label for="desc">Description:</label>
+  <input type="text" th:field="*{desc}" id="desc">
+  <br>
+
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
