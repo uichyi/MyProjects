@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rules</title>
+</head>
+<body>
+    <ul>
+        <li>No swearing!</li>
+        <li>No spamming!</li>
+        <li>No adult content!</li>
+        <li>No duplicate threads!</li>
+        <li>Only thread-based content!</li>
+        <li>Have fun!</li>
+    </ul>
+    {% block content %}
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{ form }}
+        <a href="/">Return</a>
+    </form>
+    {% endblock %}
+</body>
+</html>

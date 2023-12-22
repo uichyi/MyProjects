@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>/img/brd/</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'board_style.css' %}">
+</head>
+<body>
+    <div id="NBar">
+        {% for i in boards %}
+            <a href="board/{{ i.shortcut }}/" title="{{ i.title }}">{{ i.shortcut }} /</a>
+        {% endfor %}
+    </div>
+    <h1>/img/brd/</h1>
+    {% block content %}
+    <form id="brdform" method="post">
+        {% csrf_token %}
+        <p>Logged as {{ user }}</p>
+        <a href="{% url 'logout' %}" type="submit">Log Out?</a>
+    </form>
+    {% endblock %}
+    <div class="cards">
+        <div id="WAcard">
+            <div class="bbar"><b>What is this page?</b></div>
+            <p>Welcome! This is an image board! You can do here that that and even that and so so on</p>
+            <br>
+            <p>Make sure to read the <a href="rules">Rules</a> before posting!</p>
+        </div>
+        <div id="Brdcard">
+            <div class="bbar"><b>Boards</b></div>
+            <ol>
+                {% for i in boards %}
+                    <li><a href="board/{{ i.shortcut }}/">{{ i }}</a></li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div id="Statcard">
+            <div class="bbar"><b>Stats</b></div>
+            <p>Total posts: {{ posts }}, Total users: {{ users }}</p>
+        </div>
+    </div>
+</body>
+</html>

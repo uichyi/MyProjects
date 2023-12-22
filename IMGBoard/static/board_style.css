@@ -1,0 +1,104 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  background: #3D923D;
+}
+
+h1 {
+  color: darkred;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.solocard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+#WAcard {
+  width: 700px;
+  padding: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: #E9E2D0;
+  box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+}
+
+#Statcard {
+  width: 700px;
+  padding: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: #E9E2D0;
+  box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+}
+
+.bbar {
+  background: #fca;
+  color: #800;
+  margin: -25px;
+  width: 700px;
+  padding-left: 0.5em;
+  line-height: 2em;
+  text-align: left;
+}
+
+.bbar b {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 1.5em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+#Brdcard {
+  width: 700px;
+  padding: 25px;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: #E9E2D0;
+  box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
+}
+
+#NBar {
+  top: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Home {
+  position: absolute;
+  top: 2px;
+  left: 6px;
+}
+
+#brdform {
+    position: absolute;
+    top: 6px;
+    right: 20px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+#linkie {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    padding: 5px 10px;
+    border-radius: 15px;
+}

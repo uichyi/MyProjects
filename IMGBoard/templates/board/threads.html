@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ board_name }}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'board_style.css' %}">
+</head>
+<body>
+    <div id="NBar">
+        <a id="Home" href="/">Main Page</a>
+        {% for i in boards %}
+            <a href="/board/{{ i.shortcut }}/" title="{{ i.title }}"> {{ i.shortcut }} /</a>
+        {% endfor %}
+    </div>
+    <h1>/{{ board_name.shortcut }}/</h1>
+    {% block content %}
+    <form id="brdform" method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <p>Logged as {{ user }}</p>
+            <a href="{% url 'logout' %}" type="submit">Log Out?</a>
+        {% else %}
+            <a href="{% url 'logout' %}" type="submit">Log In</a>
+        {% endif %}
+    </form>
+    {% endblock %}
+    <div class="cards">
+        <div id="Brdcard">
+            <div class="bbar"><b>Threads</b></div>
+            <ol>
+                {% for i in threads %}
+                    <li><a href="{{ i.id }}">{{ i }}</a></li>
+                {% endfor %}
+                {% if user.is_authenticated %}
+                    <a href="add">Add new thread</a>
+                {% endif %}
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

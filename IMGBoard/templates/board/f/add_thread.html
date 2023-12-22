@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ board_name }}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'thread_style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="NBar">
+        <a id="Home" href="/">Main Page</a>
+        {% for i in boards %}
+            <a href="/board/{{ i.shortcut }}/" title="{{ i.title }}"> {{ i.shortcut }} /</a>
+        {% endfor %}
+    </div>
+    <h1>/{{ board_name.shortcut }}/</h1>
+    {% block content %}
+    <form id="brdform" method="post">
+        {% csrf_token %}
+        <p>Logged as {{ user }}</p>
+        <a href="{% url 'logout' %}" type="submit">Log Out?</a>
+    </form>
+    {% endblock %}
+    <div class="cards">
+        <div id="Brdcard">
+            <div class="bbar"><b>Add Thread</b></div>
+            <form method="post" class="container-md">
+                <div>
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <input type="submit" value="Post" class="d-flex justify-content-center btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

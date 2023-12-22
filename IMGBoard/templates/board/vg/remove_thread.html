@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ thread }}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'board_style.css' %}">
+</head>
+<body>
+    <div class="solocard">
+        <div id="Brdcard">
+            <div class="bbar"><b>Thread Removed.</b></div>
+            <a href="/board/{{ board_name.shortcut }}">Return</a>
+        </div>
+    </div>
+</body>
+</html>

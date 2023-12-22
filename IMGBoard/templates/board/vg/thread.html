@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ thread }}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'thread_style.css' %}">
+</head>
+<body>
+    <div id="NBar">
+        <a id="Home" href="/">Main Page</a>
+        {% for i in boards %}
+            <a href="/board/{{ i.shortcut }}/" title="{{ i.title }}"> {{ i.shortcut }} /</a>
+        {% endfor %}
+    </div>
+    <h1>/{{ thread }} Thread/</h1>
+    {% block content %}
+    <form id="logform" method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <p>Logged as {{ user }}</p>
+            <a href="{% url 'logout' %}" type="submit">Log Out?</a>
+        {% else %}
+            <a href="{% url 'logout' %}" type="submit">Log In</a>
+        {% endif %}
+    </form>
+    {% if post %}
+        {% for i in post %}
+        <blockquote id="blockpost" class="card">
+            <p>{{ i.username }}</p>
+            {{ i.body }}
+        </blockquote>
+        {% endfor %}
+    {% endif %}
+    <form method="post" class="container-md">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <div>
+                {{ form | crispy }}
+            </div>
+            <input type="submit" value="Post" class="d-flex justify-content-center btn btn-primary">
+        {% endif %}
+    </form>
+    {% endblock %}
+</body>
+</html>

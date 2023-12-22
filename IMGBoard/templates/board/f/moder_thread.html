@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ thread }}</title>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load crispy_forms_tags %}
+    {% load static %}
+    <link rel = "stylesheet" type="text/css" href="{% static 'thread_style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="NBar">
+        <a id="Home" href="/">Main Page</a>
+        {% for i in boards %}
+            <a href="/board/{{ i.shortcut }}/" title="{{ i.title }}"> {{ i.shortcut }} /</a>
+        {% endfor %}
+    </div>
+    <h1>/{{ thread }} Thread/</h1>
+    <a id="remove_style" type="submit" href="remove" class="btn btn-default">Remove thread?</a>
+    {% block content %}
+    <form id="logform" method="post">
+        {% csrf_token %}
+        <p>Logged as {{ user }}</p>
+        <a href="{% url 'logout' %}" type="submit">Log Out?</a>
+    </form>
+    {% if post %}
+        {% for i in post %}
+        <blockquote id="blockpost" class="card">
+            <p>{{ i.username }}</p>
+            {{ i.body }}
+        </blockquote>
+        {% endfor %}
+    {% endif %}
+    <form method="post" class="container-md">
+        {% csrf_token %}
+        <div>
+            {{ form | crispy }}
+        </div>
+        <input type="submit" value="Post" class="d-flex justify-content-center btn btn-primary">
+    </form>
+    {% endblock %}
+</body>
+</html>
