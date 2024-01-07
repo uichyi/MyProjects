@@ -1,5 +1,5 @@
-import tkinter as tk
-import tkinter.messagebox as mb
+from tkinter import *
+from tkinter import messagebox as mb
 
 
 def valid(row, col, num):
@@ -38,7 +38,7 @@ def solve(row, col):
     else:
         return solve(row, col + 1)
 
-
+"""
 board = [
     [".","7",".",".",".",".","5",".","3"],
     ["3",".",".","9","1",".",".",".","."],
@@ -50,11 +50,52 @@ board = [
     [".",".",".","3",".",".",".","2","."],
     ["5",".","2",".",".",".",".",".","."],
 ]
-solve(0, 0)
-for i in range(9):
-    print(board[i])
+"""
+
+board = [[]]
+def show():
+    row = 0
+    entry_list = []
+    for entr in entries:
+        entry_list.append(str(entr.get()))
+    for i in entry_list:
+        # накинуть проверку как valid
+        if i.isdigit() or i == '':
+            if i == '':
+                i = "."
+            board[row].append(i)
+            if len(board[row]) == 9 and len(board) < 9:
+                row += 1
+                board.append([])
+        else:
+            mb.showerror("Ошибка", "Числа введены неверно")
+    solve(0, 0)
+    for i in range(9):
+        print(board[i])
+    board.clear()
+    board.append([])
+
+
+root = Tk()
+root.title("Sudoku Solver")
+root.geometry("360x500")
+entries = []
+for j in range(9):
+    for i in range(9):
+        entry = Entry(width=4)
+        entry.grid(row=j, column=i, pady=5, padx=5)
+        entries.append(entry)
+Button(text="Решить", command=show).grid(row=10, column=4, pady=10)
+root.mainloop()
 
 """
-С помощью этого кода, решил трудное судоку за 1 минуту 29 секунд, в будущем попробую сделать всплывающее окно, где
-можно будет, нажимая на кнопки, показывать положение конкретных чисел, что поможет ускорить решение судоку
+Баги:
+1. Если числа не подходят под условия самого судоку, программа вылетает.
+2. Проверка ничего не делает, только выводит окошко, но не останавливает процесс.
+
+Добавить:
+1. Вывод решения в окошке.
+2. Каждой цифре добавить либо различимую палитру так, чтобы глаз смог быстро распознать нахождение всех таких чисел,
+либо сделать переключатель, который будет отмечать интересующие числа.
+3. Удобно читаемый код.
 """
