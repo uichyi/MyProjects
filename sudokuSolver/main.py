@@ -50,17 +50,21 @@ board = [
     [".",".",".","3",".",".",".","2","."],
     ["5",".","2",".",".",".",".",".","."],
 ]
+solve(0, 0)
+for i in range(9):
+    print(board[i])
+print()
 """
 
-board = [[]]
+
 def show():
+    board.clear()
+    board.append([])
     row = 0
-    entry_list = []
     for entr in entries:
-        entry_list.append(str(entr.get()))
-    for i in entry_list:
+        i = str(entr.get())
         # накинуть проверку как valid
-        if i.isdigit() or i == '':
+        if i == '' or (i.isdigit() and 1 <= int(i) <= 9):
             if i == '':
                 i = "."
             board[row].append(i)
@@ -68,18 +72,35 @@ def show():
                 row += 1
                 board.append([])
         else:
-            mb.showerror("Ошибка", "Числа введены неверно")
+            board.clear()
+            board.append([])
+            return mb.showerror("Ошибка", "Числа введены неверно")
     solve(0, 0)
     for i in range(9):
+        for j in range(9):
+            lab = Label(root, text=board[i][j])
+            lab.grid(row=i+11, column=j, pady=5, padx=5)
+    """
+    for k in range(1, 10):
+        Button(text=k, command=lambda: highlight(k)).grid(row=22, column=k-1, pady=10)
+    """
+    for i in range(9):
         print(board[i])
-    board.clear()
-    board.append([])
+    print()
+
+
+def highlight(num):
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == num:
+                pass
 
 
 root = Tk()
 root.title("Sudoku Solver")
-root.geometry("360x500")
+root.geometry("360x600")
 entries = []
+board = [[]]
 for j in range(9):
     for i in range(9):
         entry = Entry(width=4)
@@ -91,11 +112,9 @@ root.mainloop()
 """
 Баги:
 1. Если числа не подходят под условия самого судоку, программа вылетает.
-2. Проверка ничего не делает, только выводит окошко, но не останавливает процесс.
 
 Добавить:
-1. Вывод решения в окошке.
-2. Каждой цифре добавить либо различимую палитру так, чтобы глаз смог быстро распознать нахождение всех таких чисел,
+1. Каждой цифре добавить либо различимую палитру так, чтобы глаз смог быстро распознать нахождение всех таких чисел,
 либо сделать переключатель, который будет отмечать интересующие числа.
-3. Удобно читаемый код.
+2. Удобно читаемый код.
 """
