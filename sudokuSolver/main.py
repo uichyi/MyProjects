@@ -80,25 +80,28 @@ def show():
         for j in range(9):
             lab = Label(root, text=board[i][j])
             lab.grid(row=i+11, column=j, pady=5, padx=5)
-    """
     for k in range(1, 10):
-        Button(text=k, command=lambda: highlight(k)).grid(row=22, column=k-1, pady=10)
+        Button(text=k, command=lambda n = k: highlight(n)).grid(row=22, column=k-1, pady=10)
     """
     for i in range(9):
         print(board[i])
     print()
+    """
 
 
 def highlight(num):
     for i in range(9):
         for j in range(9):
-            if board[i][j] == num:
-                pass
+            if board[i][j] == str(num):
+                lab = Label(root, text=board[i][j], background='red')
+            else:
+                lab = Label(root, text=board[i][j])
+            lab.grid(row=i + 11, column=j, pady=5, padx=5)
 
 
 root = Tk()
 root.title("Sudoku Solver")
-root.geometry("360x600")
+root.geometry("360x630")
 entries = []
 board = [[]]
 for j in range(9):
@@ -114,7 +117,6 @@ root.mainloop()
 1. Если числа не подходят под условия самого судоку, программа вылетает.
 
 Добавить:
-1. Каждой цифре добавить либо различимую палитру так, чтобы глаз смог быстро распознать нахождение всех таких чисел,
-либо сделать переключатель, который будет отмечать интересующие числа.
+1. Возможность нажимать на кнопки прказа отдельных цифр с клавиатуры
 2. Удобно читаемый код.
 """
