@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    {% load django_bootstrap5 %}
+    {% load crispy_forms_tags %}
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    {% block content %}
+        <form method="post" style="max-width: 400px">
+            <div class="card-body">
+                {% csrf_token %}
+                <table>
+                    {{ form | crispy }}
+                </table>
+                <button type="submit" href="show_table.html" class="btn btn-primary">Авторизация</button>
+            </div>
+        </form>
+    {% endblock %}
+    </div>
+</body>
+</html>
