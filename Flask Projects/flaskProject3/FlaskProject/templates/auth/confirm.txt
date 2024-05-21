@@ -1,0 +1,2 @@
+Confirm your account:
+{{ 'http://127.0.0.1:5000' + url_for('auth.confirm', token=token)}}

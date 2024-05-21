@@ -1,0 +1,12 @@
+Top priority:
+- All forms on one page are validating once any submit button was pressed. If user fills registration form,
+login form and clicks logout, he will be redirected to registration.
+- User must know why he couldn't registrate or login.
+- Give moderator and higher access to deleting item from shop, also removing this item from every cart if necessary.
+- Landing page is empty, it needs to be filled.
+- Admin page is available for anyone, but only home tab. Only admin can access database. Still needs to be fixed.
+- Reduce the code size. Most of the functions are repetitive (excluding redirect and render paths)
+
+Low priority:
+- Some pep8 problems are not fixed, just hidden. It doesn't really matter, and most of them work only when pep8 error
+shows up.
