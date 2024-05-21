@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaft.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+</head>
+<body>
+    <p th:text="${date.getId()}">value</p>
+    <p th:text="${date.getDay()}">value</p>
+    <p th:text="${date.getMonth()}">value</p>
+    <form th:action="@{/dates/{id}/edit(id=${date.getId()})}">
+        <input type="submit" value="edit" />
+    </form>
+    <form th:method="POST" th:action="@{/dates/{id}(id=${date.getId()})}">
+        <input type="submit" value="delete" />
+    </form>
+    <form action="/dates">
+        <input type="submit" value="back" />
+    </form>
+</body>
+</html>
